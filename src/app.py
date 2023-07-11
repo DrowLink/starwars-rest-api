@@ -46,6 +46,8 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
+#PEOPLE ROUTES
+
 @app.route('/people', methods=['GET'])
 def get_people():
 
@@ -54,6 +56,98 @@ def get_people():
     }
     
     return jsonify(response_body), 200
+
+@app.route('/people/<int:people_id>', methods=['GET'])
+def handle_people_id(people_id):
+
+    response_body = {
+        "msg": f"Hello, this is your GET /people/<int:people_id> response {people_id}"
+
+    }
+    
+    return jsonify(response_body), 200
+
+#FAVORITES ROUTES
+@app.route('/user/favorites', methods=['GET'])
+def handle_user_favorites():
+
+    response_body = {
+        "msg": "Hello, this is your GET /user/favorites response "
+    }
+
+    return jsonify(response_body), 200
+
+
+@app.route('/favorite/planet/<int:planet_id>', methods=['POST', 'DELETE'])
+def handle_favorite_planet(planet_id):
+
+    if request.method == 'POST':
+        response_data = request.data
+        response_body = {
+        "msg": f"Hello, this is your POST /favorite/planet response {planet_id}",
+        "data": response_data
+
+        }
+    
+        print(jsonify(response_body))
+        return jsonify(response_body), 200
+    
+    if request.method == 'DELETE':
+
+        print("Delete")
+        return jsonify("delete"), 200
+
+
+@app.route('/favorite/people/<int:people_id>', methods=['POST', 'DELETE'])
+def handle_favorite_people(people_id):
+
+    if request.method == 'POST':
+        response_data = request.data
+        response_body = {
+        "msg": f"Hello, this is your POST /favorite/people response {people_id}",
+        "data": response_data
+
+        }
+    
+        return jsonify(response_body), 200
+    
+    if request.method == 'DELETE':
+
+        print("Delete")
+        return jsonify("delete"), 200
+
+
+@app.route('/favorite/people/<int:people_id>', methods=['POST', 'DELETE'])
+def handle_favorite_people(people_id):
+
+    if request.method == 'POST':
+        response_data = request.data
+        response_body = {
+        "msg": f"Hello, this is your POST /favorite/people response {people_id}",
+        "data": response_data
+
+        }
+    
+        return jsonify(response_body), 200
+    
+    if request.method == 'DELETE':
+
+        print("Delete")
+        return jsonify("delete"), 200
+
+
+#VEHICLE ROUTE
+@app.route('/vehicles/<int:vehicles_id>', methods=['GET'])
+def handle_vehicles_id(vehicles_id):
+
+    response_body = {
+        "msg": f"Hello, this is your GET /vehicles/<int:vehicles_id> response {vehicles_id}"
+
+    }
+    
+    return jsonify(response_body), 200
+
+
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
